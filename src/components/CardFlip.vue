@@ -60,6 +60,9 @@ export default {
         return [];
       },
     },
+    rules: {
+      type: Array,
+    },
   },
   data() {
     return {
@@ -69,6 +72,7 @@ export default {
   },
   methods: {
     onToggleFlipCard() {
+      if (this.rules.length >= 2) return;
       if (this.isDisabled) return false;
       this.isFlipped = !this.isFlipped;
       if (this.isFlipped) this.$emit("onFlip", this.card);

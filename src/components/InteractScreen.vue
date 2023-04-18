@@ -10,13 +10,14 @@
         }px`,
       }"
     >
-      <card-flip
+      <card-memory
         v-for="(card, index) in cardsContext"
         :key="index"
         :ref="`card-${index}`"
         :imgBackFaceUrl="`images/${card}.png`"
         :card="{ index, value: card }"
         :cardsContext="cardsContext"
+        :rules="rules"
         @onFlip="checkRule($event)"
       />
     </div>
@@ -25,7 +26,7 @@
 
 <script>
 // import { proxyRefs } from "vue";
-import CardFlip from "./CardFlip.vue";
+import Card from "./CardFlip.vue";
 // import { ref, onMounted } from "vue";
 export default {
   props: {
@@ -36,7 +37,9 @@ export default {
       },
     },
   },
-  components: { CardFlip },
+  components: {
+    CardMemory: Card,
+  },
   data() {
     return {
       rules: [],
